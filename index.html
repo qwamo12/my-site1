@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>System Error</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        background: #050505;
+        color: #00ff41;
+        font-family: monospace;
+        overflow: hidden;
+    }
+
+    .screen {
+        padding: 25px;
+        height: 100vh;
+    }
+
+    h1 {
+        color: red;
+        text-align: center;
+        font-size: 32px;
+        animation: blink .6s infinite;
+    }
+
+    #terminal {
+        font-size: 16px;
+        line-height: 1.7;
+        white-space: pre-wrap;
+    }
+
+    .warning {
+        position: fixed;
+        inset: 0;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        background: rgba(255,0,0,.15);
+    }
+
+    .box {
+        background: #080808;
+        border: 2px solid red;
+        padding: 25px;
+        width: 90%;
+        max-width: 500px;
+        text-align: center;
+        box-shadow: 0 0 30px red;
+    }
+
+    button {
+        background: red;
+        color: white;
+        border: 0;
+        padding: 14px 25px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 15px;
+    }
+
+    @keyframes blink {
+        50% { opacity: .3; }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="screen">
+    <h1>⚠ SYSTEM INFECTED ⚠</h1>
+    <div id="terminal"></div>
+</div>
+
+<div class="warning" id="warning">
+    <div class="box">
+        <h2>⚠ ВНИМАНИЕ</h2>
+        <p>Обнаружена критическая ошибка системы.</p>
+        <p>Это демонстрация — настоящий телефон не повреждён.</p>
+        <button onclick="location.reload()">ПЕРЕЗАПУСТИТЬ</button>
+    </div>
+</div>
+
+<script>
+const terminal = document.getElementById("terminal");
+
+const messages = [
+    "[SYSTEM] Запуск диагностики...",
+    "[SCAN] Проверка файлов...",
+    "[SCAN] Проверка памяти...",
+    "[SCAN] Поиск подозрительных процессов...",
+    "[WARNING] Обнаружена неизвестная активность...",
+    "[ERROR] Доступ к системным ресурсам невозможен...",
+    "[SYSTEM] Попытка восстановления...",
+    "[SYSTEM] Ошибка восстановления...",
+    "[ALERT] КРИТИЧЕСКАЯ ОШИБКА"
+];
+
+let i = 0;
+
+function typeMessage() {
+    if (i < messages.length) {
+        terminal.innerHTML += messages[i] + "\n";
+        i++;
+        setTimeout(typeMessage, 700);
+    } else {
+        setTimeout(() => {
+            document.getElementById("warning").style.display = "flex";
+        }, 800);
+    }
+}
+
+typeMessage();
+</script>
+
+</body>
+</html>
